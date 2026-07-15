@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Croacia — Tierra de mil islas</title>
+  <meta name="description" content="Recorré las ciudades históricas de Croacia sobre el Adriático. Mapa interactivo, historia de cada lugar y navegación en español, croata e inglés." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%87%AD%F0%9F%87%B7%3C/text%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- ===================== HEADER / NAV ===================== -->
+  <header class="site-header" id="siteHeader">
+    <a href="#top" class="brand" data-nav="top">
+      <span class="brand-flag" aria-hidden="true">
+        <svg viewBox="0 0 30 20" width="30" height="20" class="flag-svg">
+          <rect width="30" height="6.66" y="0" fill="#ff0000"/>
+          <rect width="30" height="6.66" y="6.66" fill="#ffffff"/>
+          <rect width="30" height="6.68" y="13.32" fill="#171796"/>
+          <g transform="translate(15,10)">
+            <path d="M-3.4,-2.2 h6.8 v2.5 a3.4 3.4 0 0 1 -6.8 0 z" fill="#ff0000" stroke="#fff" stroke-width="0.5"/>
+          </g>
+        </svg>
+      </span>
+      <span class="brand-text">
+        <span class="brand-title">CROATIA</span>
+        <span class="brand-sub" data-i18n="brandSub">Tierra de mil islas</span>
+      </span>
+    </a>
+
+    <nav class="main-nav">
+      <a href="#explore" class="nav-link" data-i18n="navExplore" data-nav="explore">Explorar</a>
+      <a href="#facts" class="nav-link" data-i18n="navAbout" data-nav="facts">Sobre Croacia</a>
+    </nav>
+
+    <div class="lang-switch" role="group" aria-label="Language">
+      <button class="lang-btn" data-lang="es" type="button">ES</button>
+      <button class="lang-btn" data-lang="hr" type="button">HR</button>
+      <button class="lang-btn" data-lang="en" type="button">EN</button>
+    </div>
+
+    <button class="nav-toggle" id="navToggle" type="button" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <!-- ===================== HERO + MAP ===================== -->
+  <main id="top">
+    <section class="hero" id="hero">
+      <div class="hero-sea"></div>
+      <div class="hero-vignette"></div>
+
+      <div class="hero-inner">
+        <div class="hero-copy">
+          <span class="hero-kicker" data-i18n="heroKicker">Un viaje por el Adriático</span>
+          <h1 class="hero-title" data-i18n="heroTitle">Croacia</h1>
+          <p class="hero-lead" data-i18n="heroLead">Recorré las ciudades que hicieron historia sobre el mar Adriático.</p>
+          <a href="#explore" class="btn-primary" data-i18n="heroCta" data-nav="explore">Explorar el mapa</a>
+        </div>
+      </div>
+
+      <!-- ============ INTERACTIVE MAP ============ -->
+      <div class="map-wrap" id="explore">
+        <div class="map-heading">
+          <h2 data-i18n="exploreTitle">Elegí tu destino</h2>
+          <p data-i18n="exploreSub">Hacé clic en cualquier marcador del mapa.</p>
+        </div>
+
+        <div class="map-stage">
+          <svg class="croatia-map" viewBox="0 0 1200 900" role="img" aria-label="Mapa interactivo de Croacia" preserveAspectRatio="xMidYMid meet">
+            <defs>
+              <radialGradient id="seaGrad" cx="45%" cy="40%" r="80%">
+                <stop offset="0%" stop-color="#1c5a83"/>
+                <stop offset="45%" stop-color="#124766"/>
+                <stop offset="100%" stop-color="#0a2c44"/>
+              </radialGradient>
+              <linearGradient id="landGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#4b6b3f"/>
+                <stop offset="45%" stop-color="#3e5c36"/>
+                <stop offset="100%" stop-color="#2f4a2c"/>
+              </linearGradient>
+              <linearGradient id="landGrad2" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#556f42"/>
+                <stop offset="100%" stop-color="#374f2d"/>
+              </linearGradient>
+              <filter id="landShadow" x="-20%" y="-20%" width="140%" height="140%">
+                <feDropShadow dx="0" dy="7" stdDeviation="9" flood-color="#00121f" flood-opacity="0.5"/>
+              </filter>
+              <radialGradient id="pinGlow" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#ffd76a" stop-opacity="0.9"/>
+                <stop offset="100%" stop-color="#ffd76a" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+
+            <!-- sea -->
+            <rect x="0" y="0" width="1200" height="900" fill="url(#seaGrad)"/>
+
+            <!-- subtle sea texture: latitude lines -->
+            <g class="sea-lines" opacity="0.06" stroke="#bfe4ff" stroke-width="1.2" fill="none">
+              <path d="M0,150 Q600,120 1200,160"/>
+              <path d="M0,320 Q600,290 1200,330"/>
+              <path d="M0,500 Q600,470 1200,510"/>
+              <path d="M0,680 Q600,650 1200,690"/>
+              <path d="M0,820 Q600,800 1200,840"/>
+            </g>
+
+            <!-- decorative islands -->
+            <g class="isles" fill="url(#landGrad2)" opacity="0.92" filter="url(#landShadow)">
+              <ellipse cx="250" cy="398" rx="26" ry="14" transform="rotate(-25 250 398)"/>
+              <ellipse cx="220" cy="428" rx="30" ry="11" transform="rotate(-30 220 428)"/>
+              <ellipse cx="322" cy="452" rx="34" ry="10" transform="rotate(-32 322 452)"/>
+              <ellipse cx="604" cy="592" rx="46" ry="13" transform="rotate(-18 604 592)"/>
+              <ellipse cx="470" cy="666" rx="22" ry="12"/>
+              <ellipse cx="732" cy="702" rx="40" ry="12" transform="rotate(-15 732 702)"/>
+              <ellipse cx="800" cy="726" rx="20" ry="9" transform="rotate(-15 800 726)"/>
+              <ellipse cx="392" cy="612" rx="18" ry="9"/>
+            </g>
+
+            <!-- mainland -->
+            <path class="land" filter="url(#landShadow)" fill="url(#landGrad)" stroke="#8fb98a" stroke-width="1.5" stroke-opacity="0.5"
+              d="M240,360 L250,300 L300,258 L380,228 L452,208 L560,205 L700,206 L800,208 L852,216 L900,246 L908,286 L876,318 L812,340 L740,362 L686,404 L662,462 L672,520 L700,560 L742,606 L786,660 L824,708 L842,740 L806,712 L762,668 L706,618 L648,586 L590,596 L560,570 L516,566 L470,532 L430,526 L398,494 L360,470 L320,432 L292,398 L262,372 Z"/>
+
+            <!-- istria peninsula -->
+            <path class="land" filter="url(#landShadow)" fill="url(#landGrad)" stroke="#8fb98a" stroke-width="1.5" stroke-opacity="0.5"
+              d="M228,338 L232,300 L200,300 L150,318 L110,350 L100,382 L122,414 L158,410 L192,388 L216,364 Z"/>
+
+            <!-- hvar island (clickable, marker sits on it) -->
+            <path class="land isle-hvar" filter="url(#landShadow)" fill="url(#landGrad2)" stroke="#8fb98a" stroke-width="1.4" stroke-opacity="0.5"
+              d="M496,616 L540,606 L600,610 L618,620 L590,632 L540,632 L500,626 Z"/>
+
+            <!-- neighbour labels -->
+            <g class="neighbours" fill="#9fc4e0" opacity="0.5" font-size="19" font-family="Inter, sans-serif" letter-spacing="2">
+              <text x="150" y="250">SLOVENIJA</text>
+              <text x="640" y="150">MAĐARSKA</text>
+              <text x="700" y="470">BOSNA I HERCEGOVINA</text>
+              <text x="960" y="360">SRBIJA</text>
+              <text x="900" y="800">CRNA GORA</text>
+              <text x="120" y="700" font-style="italic" fill="#7fb0d8" font-size="26">Jadransko more</text>
+            </g>
+
+            <!-- markers injected here by JS -->
+            <g id="markers"></g>
+          </svg>
+
+          <p class="scroll-hint" data-i18n="scrollHint">Deslizá para descubrir</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== DESTINATION CARDS ===================== -->
+    <section class="cards-section">
+      <div class="cards-grid" id="cardsGrid"><!-- cards injected by JS --></div>
+    </section>
+
+    <!-- ===================== FACTS ===================== -->
+    <section class="facts" id="facts">
+      <div class="facts-inner">
+        <div class="fact"><span class="fact-label" data-i18n="factsCapital">Capital</span><span class="fact-value" data-i18n="factsCapitalV">Zagreb</span></div>
+        <div class="fact"><span class="fact-label" data-i18n="factsArea">Superficie</span><span class="fact-value" data-i18n="factsAreaV">56.594 km²</span></div>
+        <div class="fact"><span class="fact-label" data-i18n="factsPopulation">Población</span><span class="fact-value" data-i18n="factsPopulationV">~3,9 millones</span></div>
+        <div class="fact"><span class="fact-label" data-i18n="factsCurrency">Moneda</span><span class="fact-value" data-i18n="factsCurrencyV">Euro (EUR)</span></div>
+        <div class="fact"><span class="fact-label" data-i18n="factsLanguage">Idioma</span><span class="fact-value" data-i18n="factsLanguageV">Croata</span></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="site-footer">
+    <div class="flag-strip"><span></span><span></span><span></span></div>
+    <p data-i18n="footerNote">Hecho con dedicación para recorrer Croacia.</p>
+    <p class="footer-brand">CROATIA · <span data-i18n="brandSub">Tierra de mil islas</span></p>
+  </footer>
+
+  <!-- ===================== DETAIL OVERLAY ===================== -->
+  <div class="detail-overlay" id="detailOverlay" aria-hidden="true">
+    <div class="detail-panel" role="dialog" aria-modal="true">
+      <button class="detail-close" id="detailClose" type="button" aria-label="Close">&times;</button>
+
+      <div class="detail-hero" id="detailHero">
+        <div class="detail-hero-overlay"></div>
+        <div class="detail-hero-text">
+          <span class="detail-region" id="dRegion"></span>
+          <h2 class="detail-name" id="dName"></h2>
+          <p class="detail-tagline" id="dTagline"></p>
+        </div>
+      </div>
+
+      <div class="detail-body">
+        <div class="detail-meta">
+          <div class="meta-item"><span class="meta-label" data-i18n="detailFounded">Origen</span><span id="dFounded"></span></div>
+          <div class="meta-item"><span class="meta-label" data-i18n="detailRegion">Región</span><span id="dRegion2"></span></div>
+          <div class="meta-item"><span class="meta-label" data-i18n="detailKnownFor">Famosa por</span><span id="dKnownFor"></span></div>
+        </div>
+
+        <div class="detail-columns">
+          <div class="detail-story">
+            <h3 data-i18n="detailStory">La historia</h3>
+            <div id="dStory"></div>
+          </div>
+          <aside class="detail-side">
+            <div class="side-block">
+              <h4 data-i18n="detailHighlights">Qué no te podés perder</h4>
+              <ul id="dHighlights"></ul>
+            </div>
+            <div class="side-block fact-block">
+              <h4 data-i18n="detailFact">¿Sabías que…?</h4>
+              <p id="dFact"></p>
+            </div>
+          </aside>
+        </div>
+      </div>
+
+      <div class="detail-nav">
+        <button class="detail-nav-btn" id="dPrev" type="button">&larr; <span data-i18n="detailPrev">Anterior</span></button>
+        <button class="detail-nav-btn detail-nav-back" id="dBack" type="button" data-i18n="detailBack">Volver al mapa</button>
+        <button class="detail-nav-btn" id="dNext" type="button"><span data-i18n="detailNext">Siguiente</span> &rarr;</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/content.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
